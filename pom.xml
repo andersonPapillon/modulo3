@@ -6,4 +6,30 @@
   <packaging>war</packaging>
   <name>Curso_Java_Web1</name>
   <description>						</description>
+  
+  <dependencies>
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>3.1.0</version>
+	    <scope>provided</scope>
+	</dependency>
+  </dependencies>
+  
+  
+  <build>
+	  <plugins>
+		  	<plugin>
+		  		<artifactId>maven-compiler-plugin</artifactId>
+    			<version>3.1</version>
+    			<configuration>
+    				<souce>1.8</souce>
+    				<target>1.8</target>
+    				<encoding>UTF-8</encoding>
+    			</configuration>	
+		  	</plugin>
+	  </plugins>
+  </build>
+  
+
 </project>

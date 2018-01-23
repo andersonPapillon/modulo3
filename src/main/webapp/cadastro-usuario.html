@@ -1,0 +1,46 @@
+<html>
+
+    <head>
+
+		
+        <!-- <script src="js/usuario-service.js"></script>
+        <script src="js/usuario-controller.js"></script>
+        <script>
+            uc =  new UsuarioController();
+        </script>
+		-->
+		
+    </head>
+    <body>
+        <form>
+         		<input id="txtId" readonly="readonly"/>
+                <input id="txtUsuario" placeholder="Nome de Usuário"/>
+                <input id="txtSenha" placeholder="Senha" type="password"/>
+                <input type="button" value="Salvar" onclick="uc.aoClicarSalvar()"/>
+                <input type="button" value="Listar" onclick="uc.aoClicarListar()"/>
+                <input type="button" value="Cancelar" onclick="uc.aoClicarCancelar()"/>
+        </form>
+
+        <table border="1">
+            <thead>
+                <tr>
+                 	<th>Id</th>
+                    <th>Nome</th>
+                    <th>Senha</th>
+                    <th> - </th>
+                    <th> - </th>
+                </tr>
+            </thead>
+            <tbody id="tbUsuarios">
+                
+            </tbody>
+        </table>
+
+    </body>
+
+
+<script>
+      
+</script>
+   
+</html>
