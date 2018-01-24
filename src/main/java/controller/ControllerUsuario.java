@@ -31,7 +31,9 @@ public class ControllerUsuario extends HttpServlet{
 		usuarios.remove(usuario);
 	}
 	 
-	
+	public List<Usuario> buscarTodos(){
+		return this.usuarios;
+	}
 	
 	
 	
@@ -41,7 +43,7 @@ public class ControllerUsuario extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		resp.getWriter().println("aeee caraio");
+		resp.getWriter().println(buscarTodos());
 		
 		
 	}
