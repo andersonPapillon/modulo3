@@ -1,13 +1,20 @@
 package model;
 
 public class Usuario {
-	
-	
+		
 	private Integer id;
 	private String nome;
 	private String senha;
 	
+	public Usuario(String nome, String senha){
+		this.nome  = nome;
+		this.senha = senha;
+	}
 	
+	public Usuario(){
+		
+	}	
+		
 	public Integer getId() {
 		return id;
 	}
