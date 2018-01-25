@@ -11,9 +11,7 @@ public class UsuarioRepository {
 	
 	public UsuarioRepository(){
 		
-	}
-	
-
+	}	
 	public void cadastrar(Usuario usuario) {
 		usuarios.add(usuario);
 	} 

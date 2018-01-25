@@ -1,13 +1,13 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 import model.Usuario;
 import repository.UsuarioRepository;
@@ -17,8 +17,7 @@ import repository.UsuarioRepository;
 public class ControllerUsuario extends HttpServlet{
 	
 	private UsuarioRepository usuRepo = new UsuarioRepository();
-	
-		
+			
 	@Override
 	public void init() throws ServletException {
 		
@@ -36,8 +35,23 @@ public class ControllerUsuario extends HttpServlet{
 			
 	//METODOS DA CLASSE CONTROLLER	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
-		resp.getWriter().println(usuRepo.buscarTodos());				
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+									
+		List<Usuario> lista = usuRepo.buscarTodos();
+		String json = "[";
+		
+		for(int i = 0;i < lista.size(); i++){
+			Usuario usu = lista.get(i);												
+			json += "{ \"nome\": \"" + usu.getNome() + "\", \"senha\": \"" + usu.getSenha() + "\"}";
+			if(i<lista.size()-1){
+				json += ",";
+			}
+		}
+						
+		json += "]";
+		
+		resp.getWriter().println(json);
+		
 	}
 		
 	@Override
@@ -72,8 +86,7 @@ public class ControllerUsuario extends HttpServlet{
 		usuRepo.alterar(indice, usu);
 		
 	}
-	
-		
+			
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
