@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Usuario;
 import repository.UsuarioRepository;
+import repository.UsuarioRepositoryBanco;
   
 @SuppressWarnings("serial")
 @WebServlet(urlPatterns={"/usucontroller", "/usuariocontroller"})
 public class ControllerUsuario extends HttpServlet{
 	
-	private UsuarioRepository usuRepo = new UsuarioRepository();
+	private UsuarioRepository usuRepo = new UsuarioRepositoryBanco();
 			
 	@Override
 	public void init() throws ServletException {
