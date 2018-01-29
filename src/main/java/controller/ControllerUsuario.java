@@ -22,6 +22,8 @@ public class ControllerUsuario extends HttpServlet{
 	@Override
 	public void init() throws ServletException {
 		
+		
+		/*
 		Usuario u1 = new Usuario("Jao", "123");
 		Usuario u2 = new Usuario("Ze", "456");
 		Usuario u3 = new Usuario("Maria", "789");
@@ -31,6 +33,8 @@ public class ControllerUsuario extends HttpServlet{
 		usuRepo.cadastrar(u3);
 				
 		super.init();
+		
+		*/
 	}	
 	
 			
@@ -38,7 +42,9 @@ public class ControllerUsuario extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 									
+		
 		List<Usuario> lista = usuRepo.buscarTodos();
+		
 		String json = "[";
 		
 		for(int i = 0;i < lista.size(); i++){
@@ -50,8 +56,8 @@ public class ControllerUsuario extends HttpServlet{
 		}
 						
 		json += "]";
-		
-		resp.getWriter().println(json);
+				
+		resp.getWriter().println(json);		
 		
 	}
 		
@@ -75,26 +81,28 @@ public class ControllerUsuario extends HttpServlet{
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		int indice = Integer.parseInt(req.getParameter("indice"));
+		int id = Integer.parseInt(req.getParameter("id"));
 		
 		String nome  = req.getParameter("nome");
 		String senha = req.getParameter("senha");
 		
 		Usuario usu = new Usuario();
+		
+		usu.setId(id);
 		usu.setNome(nome);
 		usu.setSenha(senha);
 		
-		usuRepo.alterar(indice, usu);
+		usuRepo.alterar(usu);
 		
 	}
 			
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		int indice = Integer.parseInt(req.getParameter("indice"));
+		int id = Integer.parseInt(req.getParameter("id"));
 		
 		try {
-			usuRepo.excluir(indice);			
+			usuRepo.excluir(id);			
 		} catch (Exception e) {
 			throw new ServletException("Não pode excluir");			
 		}

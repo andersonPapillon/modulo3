@@ -8,7 +8,9 @@ public interface UsuarioRepository {
 	
 	public void cadastrar(Usuario usuario);			 
 	
-	public void alterar(int indice, Usuario usuario);							
+	public void alterar(int indice, Usuario usuario);
+	
+	public void alterar(Usuario usuario);
 				
 	public void excluir(int indice); 
 				 

@@ -20,6 +20,10 @@ public class UsuarioRepositoryLista implements UsuarioRepository{
 		usuarios.set(indice, usuario);		
 	}
 	
+	public void alterar(Usuario usuario){							
+				
+	}
+	
 	public void excluir(int indice) {
 		usuarios.remove(indice);
 	}
