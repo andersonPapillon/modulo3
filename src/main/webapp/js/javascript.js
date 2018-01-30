@@ -7,7 +7,7 @@ function validar(){
 		window.alert("Os campos usuario e senha estao vazios animal!");
 		return false
 	}else{
-		window.alert("Pode entrar no sistema");
+		window.alert("Pode entrar no sistemaaaa");
 		return true;
 	}
 			
