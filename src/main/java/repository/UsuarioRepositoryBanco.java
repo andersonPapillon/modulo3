@@ -14,7 +14,7 @@ public class UsuarioRepositoryBanco implements UsuarioRepository{
 	private Connection conexao = ConexaoFactory.criarConexao();
 	//Connection conexao = ConexaoFactory.criarConexao();
 	
-	public void cadastrar(Usuario usuario){
+	public void cadastrar(Usuario usuario) throws RepositoryException{
 		
 		try {
 			PreparedStatement prepared = conexao.prepareStatement("INSERT INTO usuario (nome, senha) values (?,?)");
@@ -24,7 +24,7 @@ public class UsuarioRepositoryBanco implements UsuarioRepository{
 			prepared.execute();
 			prepared.close();						
 		} catch (SQLException e) {			
-			e.printStackTrace();
+			throw new RepositoryException(e);
 		}
 		
 	}			 

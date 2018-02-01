@@ -6,7 +6,7 @@ import model.Usuario;
 
 public interface UsuarioRepository {	
 	
-	public void cadastrar(Usuario usuario);			 
+	public void cadastrar(Usuario usuario) throws RepositoryException;			 
 	
 	public void alterar(int indice, Usuario usuario);
 	

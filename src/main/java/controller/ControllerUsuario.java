@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Usuario;
+import repository.RepositoryException;
 import repository.UsuarioRepository;
 import repository.UsuarioRepositoryBanco;
   
@@ -21,20 +22,6 @@ public class ControllerUsuario extends HttpServlet{
 			
 	@Override
 	public void init() throws ServletException {
-		
-		
-		/*
-		Usuario u1 = new Usuario("Jao", "123");
-		Usuario u2 = new Usuario("Ze", "456");
-		Usuario u3 = new Usuario("Maria", "789");
-		
-		usuRepo.cadastrar(u1);
-		usuRepo.cadastrar(u2);
-		usuRepo.cadastrar(u3);
-				
-		super.init();
-		
-		*/
 	}	
 	
 			
@@ -49,7 +36,7 @@ public class ControllerUsuario extends HttpServlet{
 		
 		for(int i = 0;i < lista.size(); i++){
 			Usuario usu = lista.get(i);												
-			json += "{ \"nome\": \"" + usu.getNome() + "\", \"senha\": \"" + usu.getSenha() + "\"}";
+			json += "{ \"id\": \"" + usu.getId() + "\", \"nome\": \"" + usu.getNome() + "\", \"senha\": \"" + usu.getSenha() + "\"}";
 			if(i<lista.size()-1){
 				json += ",";
 			}
@@ -72,9 +59,13 @@ public class ControllerUsuario extends HttpServlet{
 		usuario.setNome(nome);
 		usuario.setSenha(senha);
 		
-		usuRepo.cadastrar(usuario);
-					
-		resp.getWriter().println("Usuario cadastrado com sucesso! " + usuario);
+		try {
+			usuRepo.cadastrar(usuario);
+			resp.getWriter().println("Usuario cadastrado com sucesso! " + usuario);
+		} catch (RepositoryException e) {			
+			throw new ServletException(e);
+		}
+							
 						
 	}
 		
