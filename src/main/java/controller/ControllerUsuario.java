@@ -28,24 +28,33 @@ public class ControllerUsuario extends HttpServlet{
 	//METODOS DA CLASSE CONTROLLER	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-									
-		
-		List<Usuario> lista = usuRepo.buscarTodos();
-		
-		String json = "[";
-		
-		for(int i = 0;i < lista.size(); i++){
-			Usuario usu = lista.get(i);												
-			json += "{ \"id\": \"" + usu.getId() + "\", \"nome\": \"" + usu.getNome() + "\", \"senha\": \"" + usu.getSenha() + "\"}";
-			if(i<lista.size()-1){
-				json += ",";
-			}
-		}
 						
-		json += "]";
-				
-		resp.getWriter().println(json);		
-		
+		if(req.getParameter("id")!=null){
+														
+			Integer id = Integer.parseInt(req.getParameter("id"));									
+			Usuario usuario = usuRepo.buscarPorId(id);			
+			
+			String json = "{ \"id:\" " + usuario.getId() + ", \"nome:\" " + usuario.getNome() + ", \"senha:\" " + usuario.getSenha() + " }";
+			
+			resp.getWriter().println(json);
+									
+		}else{
+			List<Usuario> lista = usuRepo.buscarTodos();
+			
+			String json = "[";
+			
+			for(int i = 0;i < lista.size(); i++){
+				Usuario usu = lista.get(i);												
+				json += "{ \"id\": \"" + usu.getId() + "\", \"nome\": \"" + usu.getNome() + "\", \"senha\": \"" + usu.getSenha() + "\"}";
+				if(i<lista.size()-1){
+					json += ",";
+				}
+			}
+							
+			json += "]";
+					
+			resp.getWriter().println(json);			
+		}
 	}
 		
 	@Override

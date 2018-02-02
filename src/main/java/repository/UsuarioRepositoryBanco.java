@@ -88,7 +88,33 @@ public class UsuarioRepositoryBanco implements UsuarioRepository{
 		
 		return usuarios;
 	}
-	
-	
 
+	public Usuario buscarPorId(Integer id) {
+		
+		Usuario usuario = new Usuario();
+		
+		PreparedStatement prepared;
+		try {
+			prepared = conexao.prepareStatement("SELECT * FROM usuario where id=?");
+			prepared.setInt(1, id);
+			
+			ResultSet rs = prepared.executeQuery();
+			
+			while(rs.next()){
+				
+				usuario.setId(rs.getInt("id"));
+				usuario.setNome(rs.getString("nome"));
+				usuario.setSenha(rs.getString("senha"));
+															
+			}
+						
+			prepared.close();	
+			
+		} catch (SQLException e) {			
+			e.printStackTrace();
+		}
+		
+		return usuario;
+	}
+		
 }

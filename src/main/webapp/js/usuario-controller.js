@@ -50,11 +50,11 @@ UsuarioController = function(){
 		for(var i = 0;i < arrUsuarios.length; i++){
 						
 			dados += "<tr>";			
-			dados += 	"<td>" + arrUsuarios[i]['id']    + "</td>";
+			dados += 	"<td>" + arrUsuarios[i]['id']    + "</td>";			
 			dados += 	"<td>" + arrUsuarios[i]['nome']  + "</td>";
 			dados += 	"<td>" + arrUsuarios[i]['senha'] + "</td>";
 			dados += 	"<td> <input type='button' value='Excluir' onclick='uc.aoClicarExcluir'></input>";
-			dados += 	"<td> <input type='button' value='Editar'  onclick='uc.aoClicarEditar'></input>";			
+			dados += 	"<td> <input type='button' value='Editar'  onclick='uc.aoClicarEditar("+ arrUsuarios[i]['id'] +")'></input>";			
 			dados += "</tr>";
 								
 		}	
@@ -65,12 +65,24 @@ UsuarioController = function(){
 	}	
 	
 	this.aoClicarEditar = function(id){
-		this.entrarModoEdicao();
-		this.idEdicao = id;		
-		usuario = this.usuarioService.buscarPorId(id);				
+				
+		this.usuarioService.buscarPorId(id, function(usuario){
+			
+			console.log(usuario["id"]);
+			console.log(usuario.nome);
+			console.log(usuario.senha);
+			
+			document.getElementById("txtId").value      = usuario.id;
+			document.getElementById("txtUsuario").value = usuario.nome;
+			document.getElementById("txtSenha").value   = usuario.senha;			
+		});
+				
 	}
 	
-	
-	
-	
 }
+
+
+
+
+
+

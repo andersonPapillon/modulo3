@@ -44,14 +44,19 @@ UsuarioService = function(){
 	}
 	
 	this.buscarPorId = function(id, cb){
+		
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function(){			
 			if(this.readyState == 4 && this.status == 200){
-				cb(this.usuarios = JSON.parse(this.responseText));
+				
+				//console.log("deu certo", this.responseText);
+				
+				cb(this.responseText);
 			}			
 		};
-		xhttp.open("GET", "usucontroller", true);
-		xhttp.send("id="+id);
+		xhttp.open("GET", "usucontroller?id="+id, true);
+		xhttp.send();
+		
 	}
 	
 	

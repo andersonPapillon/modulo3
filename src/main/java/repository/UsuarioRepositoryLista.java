@@ -31,5 +31,8 @@ public class UsuarioRepositoryLista implements UsuarioRepository{
 	public List<Usuario> buscarTodos(){
 		return this.usuarios;
 	}
+	public Usuario buscarPorId(Integer id) {		
+		return null;
+	}
 
 }

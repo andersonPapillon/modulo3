@@ -15,4 +15,6 @@ public interface UsuarioRepository {
 	public void excluir(int indice); 
 				 
 	public List<Usuario> buscarTodos();
+
+	public Usuario buscarPorId(Integer id);
 }
