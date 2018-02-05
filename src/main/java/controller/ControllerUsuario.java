@@ -34,8 +34,8 @@ public class ControllerUsuario extends HttpServlet{
 			Integer id = Integer.parseInt(req.getParameter("id"));									
 			Usuario usuario = usuRepo.buscarPorId(id);			
 			
-			String json = "{ \"id:\" " + usuario.getId() + ", \"nome:\" " + usuario.getNome() + ", \"senha:\" " + usuario.getSenha() + " }";
-			
+			String json = "{ \"id\" :\"" + usuario.getId() + "\", \"nome\" :\"" + usuario.getNome() + "\", \"senha\" :\"" + usuario.getSenha() + "\" }";
+									
 			resp.getWriter().println(json);
 									
 		}else{
@@ -45,7 +45,7 @@ public class ControllerUsuario extends HttpServlet{
 			
 			for(int i = 0;i < lista.size(); i++){
 				Usuario usu = lista.get(i);												
-				json += "{ \"id\": \"" + usu.getId() + "\", \"nome\": \"" + usu.getNome() + "\", \"senha\": \"" + usu.getSenha() + "\"}";
+				json += "{ \"id\" :\"" + usu.getId() + "\", \"nome\" :\"" + usu.getNome() + "\", \"senha\" :\"" + usu.getSenha() + "\"}";
 				if(i<lista.size()-1){
 					json += ",";
 				}
@@ -100,16 +100,13 @@ public class ControllerUsuario extends HttpServlet{
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		int id = Integer.parseInt(req.getParameter("id"));
-		
+										
 		try {
 			usuRepo.excluir(id);			
 		} catch (Exception e) {
 			throw new ServletException("Não pode excluir");			
-		}
-				
-		
-	}
-		
+		}							
+	}		
 }
 
 

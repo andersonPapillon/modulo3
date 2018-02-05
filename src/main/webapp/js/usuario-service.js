@@ -39,24 +39,26 @@ UsuarioService = function(){
 	}
 	
 	//DELETE
-	this.deletar = function(usu){
-		this.usuarios.push(usu);
-	}
-	
-	this.buscarPorId = function(id, cb){
-		
+	this.deletar = function(id, cb){
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function(){			
-			if(this.readyState == 4 && this.status == 200){
-				
-				//console.log("deu certo", this.responseText);
-				
-				cb(this.responseText);
+			if(this.readyState == 4 && this.status == 200){												
+				cb();
+			}			
+		};
+		xhttp.open("DELETE", "usucontroller?id="+id, true);
+		xhttp.send();		
+	}
+	
+	this.buscarPorId = function(id, cb){		
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function(){			
+			if(this.readyState == 4 && this.status == 200){												
+				cb(JSON.parse(this.responseText));
 			}			
 		};
 		xhttp.open("GET", "usucontroller?id="+id, true);
-		xhttp.send();
-		
+		xhttp.send();		
 	}
 	
 	

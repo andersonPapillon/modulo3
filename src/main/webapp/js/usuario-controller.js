@@ -53,7 +53,7 @@ UsuarioController = function(){
 			dados += 	"<td>" + arrUsuarios[i]['id']    + "</td>";			
 			dados += 	"<td>" + arrUsuarios[i]['nome']  + "</td>";
 			dados += 	"<td>" + arrUsuarios[i]['senha'] + "</td>";
-			dados += 	"<td> <input type='button' value='Excluir' onclick='uc.aoClicarExcluir'></input>";
+			dados += 	"<td> <input type='button' value='Excluir' onclick='uc.aoClicarExcluir("+ arrUsuarios[i]['id'] +")'></input>";
 			dados += 	"<td> <input type='button' value='Editar'  onclick='uc.aoClicarEditar("+ arrUsuarios[i]['id'] +")'></input>";			
 			dados += "</tr>";
 								
@@ -64,14 +64,8 @@ UsuarioController = function(){
 		
 	}	
 	
-	this.aoClicarEditar = function(id){
-				
-		this.usuarioService.buscarPorId(id, function(usuario){
-			
-			console.log(usuario["id"]);
-			console.log(usuario.nome);
-			console.log(usuario.senha);
-			
+	this.aoClicarEditar = function(id){			
+		this.usuarioService.buscarPorId(id, function(usuario){						
 			document.getElementById("txtId").value      = usuario.id;
 			document.getElementById("txtUsuario").value = usuario.nome;
 			document.getElementById("txtSenha").value   = usuario.senha;			
@@ -79,6 +73,16 @@ UsuarioController = function(){
 				
 	}
 	
+	this.aoClicarExcluir = function(id){
+		
+		var self = this;
+		
+		this.usuarioService.deletar(id, function(){
+			window.alert("Excluído com sucesso porra!");
+			self.aoClicarListar();
+		});
+	}
+				
 }
 
 
