@@ -14,26 +14,31 @@ UsuarioController = function(){
 				};
 		 */		
 		
+		idUsuario 	 = document.getElementById("txtId").value;
 		nomeUsuario  = document.getElementById("txtUsuario").value;
 		senhaUsuario = document.getElementById("txtSenha").value;
-		
-		usu = "nome="+nomeUsuario+"&senha="+senhaUsuario;
-
-		//Verifica o estado da tela
-		//if(this.modoEdicao === false){
+										
+		if(idUsuario === ""){						
+			usu = "nome="+nomeUsuario+"&senha="+senhaUsuario;
+			
 			this.usuarioService.adicionar(usu, function(){
 				window.alert("Salvo com sucesso");
 				self.aoClicarListar();
 			}, function(){
 				window.alert("Não pode ser salvo!");
 			});
-		//}else{
-			//this.usuarioService.alterar(this.indiceEdicao, usu);
-		//}
+		}else{			
+			usu = "id="+idUsuario+"&nome="+nomeUsuario+"&senha="+senhaUsuario;
+			//usu = "nome="+nomeUsuario+"&senha="+senhaUsuario;
+			this.usuarioService.alterar(usu, function(){
+				window.alert("Salvo com sucesso");
+				self.aoClicarListar();				
+			}, function(){
+				window.alert("Não pode ser salvo!");				
+			});
+		}
 		
-		//Limpa a tela e sai do modo edicao
-		//this.limparCampos();
-		//this.sairModoEdicao();				
+			
 	}
 					
 	this.aoClicarListar = function(){							
@@ -75,12 +80,14 @@ UsuarioController = function(){
 	
 	this.aoClicarExcluir = function(id){
 		
-		var self = this;
-		
-		this.usuarioService.deletar(id, function(){
-			window.alert("Excluído com sucesso porra!");
-			self.aoClicarListar();
-		});
+		if(window.confirm("Deseja realmente excluir?")){
+			var self = this;		
+			this.usuarioService.deletar(id, function(){
+				window.alert("Excluído com sucesso porra!");
+				self.aoClicarListar();
+			});			
+		}
+				
 	}
 				
 }

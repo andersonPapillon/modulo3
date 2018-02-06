@@ -15,6 +15,8 @@ UsuarioService = function(){
 			}								
 		};
 		
+		console.log(usu);
+		
 		xhttp.open("POST", "usucontroller", true);		
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");		
 		xhttp.send(usu);
@@ -34,8 +36,24 @@ UsuarioService = function(){
 	}
 	
 	//UPDATE
-	this.alterar = function(indice, usu){
-		this.usuarios.splice(indice, 1, usu);
+	this.alterar = function(usu, sucesso, erro){
+						
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function(){
+			if(this.readyState === 4){
+				if(this.status === 200){
+					sucesso();
+				}else{
+					erro();
+				}							
+			}								
+		};
+		
+		console.log("dentro do service", usu);
+		
+		xhttp.open("PUT", "usucontroller?"+usu, true);		
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");		
+		xhttp.send();
 	}
 	
 	//DELETE
