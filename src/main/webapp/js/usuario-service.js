@@ -48,9 +48,7 @@ UsuarioService = function(){
 				}							
 			}								
 		};
-		
-		console.log("dentro do service", usu);
-		
+						
 		xhttp.open("PUT", "usucontroller?"+usu, true);		
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");		
 		xhttp.send();

@@ -81,18 +81,10 @@ public class ControllerUsuario extends HttpServlet{
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//int id = Integer.parseInt(req.getParameter("id"));
-		
-		String id  = req.getParameter("id");
+		int id = Integer.parseInt(req.getParameter("id"));				
 		String nome  = req.getParameter("nome");
 		String senha = req.getParameter("senha");
-		
-		System.out.println(id);
-		System.out.println(nome);
-		System.out.println(senha);
-		
-		
-		/*
+						
 		Usuario usu = new Usuario();
 		
 		usu.setId(id);
@@ -100,8 +92,7 @@ public class ControllerUsuario extends HttpServlet{
 		usu.setSenha(senha);
 		
 		usuRepo.alterar(usu);
-		*/
-		
+				
 	}
 			
 	@Override
